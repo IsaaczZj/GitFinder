@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Seach from "../Components/Seach/Seach";
 import { UserProps } from "../Types/user";
+import User from "../Components/User/User";
 
 const Home = () => {
   const [user, setUser] = useState<UserProps | null>(null);
@@ -24,7 +25,9 @@ const Home = () => {
   return (
     <div>
       <Seach loadUser={loadUser} />
-      {user && <p>{user.login}</p>}
+      {user && <User {...user}/>}
+      
+
     </div>
   );
 };
