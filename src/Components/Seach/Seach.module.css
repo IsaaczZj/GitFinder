@@ -16,7 +16,7 @@
   .input_wrapper {
     display: flex;
     border-radius: 0.5rem;
-    border: 0.2px solid white;
+    border: 1.5px solid white;
     & input,
     & button {
       padding: 0.75rem;

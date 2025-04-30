@@ -39,7 +39,7 @@ const Seach = ({ loadUser }: SeachProps) => {
 
   return (
     <div className={styles.seach}>
-      <h2>Busque por um usuário:</h2>
+      <h2>Busque por um usuário</h2>
       <p>Conheça seus melhores repositórios</p>
       <div className={styles.input_wrapper}>
         <input
