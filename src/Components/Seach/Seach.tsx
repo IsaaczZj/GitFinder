@@ -4,7 +4,7 @@ import { BsSearch } from "react-icons/bs";
 import styles from "./Seach.module.css";
 
 type SeachProps = {
-  loadUser: (userName: string) => Promise<void>;
+  loadUser: (userName: string) => void;
 };
 
 const Seach = ({ loadUser }: SeachProps) => {
@@ -26,6 +26,15 @@ const Seach = ({ loadUser }: SeachProps) => {
     setUserName(e.target.value);
     if (e.target.value.trim() !== "") setEmpty(false);
   } 
+  function handleClick(){
+    
+    if(userName.trim() === ""){
+      setEmpty(true)
+      return
+    }
+    loadUser(userName)
+    setEmpty(false)
+  }
 
 
   return (
@@ -40,7 +49,7 @@ const Seach = ({ loadUser }: SeachProps) => {
           placeholder="Nome do usuário"
           value={userName}
         />
-        <button onClick={() => loadUser(userName)}>
+        <button onClick={handleClick}>
           <BsSearch size={17} />
         </button>
       </div>

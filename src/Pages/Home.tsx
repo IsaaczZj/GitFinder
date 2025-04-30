@@ -2,32 +2,48 @@ import React, { useState } from "react";
 import Seach from "../Components/Seach/Seach";
 import { UserProps } from "../Types/user";
 import User from "../Components/User/User";
+import Error from "../Components/Error/Error";
 
 const Home = () => {
   const [user, setUser] = useState<UserProps | null>(null);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const loadUser = async (userName: string) => {
-    const response = await fetch(`https://api.github.com/users/${userName}`);
-    const data = await response.json();
+    setLoading(true);
+    setError(false);
+    setUser(null);
 
-    const { avatar_url, login, location, followers, following } = data;
-    const userData: UserProps = {
-      avatar_url,
-      login,
-      location,
-      followers,
-      following,
-    };
+    try {
+      const response = await fetch(`https://api.github.com/users/${userName}`);
+      if (!response.ok) {
+        setError(true);
+        return;
+      }
+      const data = await response.json();
 
-    setUser(userData);
+      const { avatar_url, login, location, followers, following } = data;
+      const userData: UserProps = {
+        avatar_url,
+        login,
+        location,
+        followers,
+        following,
+      };
+      setUser(userData);
+    } catch (error) {
+      setError(true);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div>
       <Seach loadUser={loadUser} />
-      {user && <User {...user}/>}
-      
-
+      {user && <User {...user} />}
+      {error && <Error />}
     </div>
   );
 };
