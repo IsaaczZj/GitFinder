@@ -3,6 +3,7 @@ import Seach from "../Components/Seach/Seach";
 import { UserProps } from "../Types/user";
 import User from "../Components/User/User";
 import Error from "../Components/Error/Error";
+import Loader from "../Components/Loader/Loader";
 
 const Home = () => {
   const [user, setUser] = useState<UserProps | null>(null);
@@ -42,6 +43,7 @@ const Home = () => {
   return (
     <div>
       <Seach loadUser={loadUser} />
+      {loading && <Loader/>}
       {user && <User {...user} />}
       {error && <Error />}
     </div>
