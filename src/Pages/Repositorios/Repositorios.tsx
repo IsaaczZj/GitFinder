@@ -17,10 +17,13 @@ const Repositorios = () => {
     async function loadRepos(userName: string) {
       setLoading(true);
       const response = await fetch(
-        `https://api.github.com/users/${userName}/repos`
+        `https://api.github.com/users/${userName}/repos?sort=created&direction=desc`
       );
       const data = await response.json();
-      setRepositorios(data);
+      const lastFiveRepos = data.slice(0,10)
+
+      setRepositorios(lastFiveRepos);
+      setLoading(false)
     }
     if (username) loadRepos(username);
   }, [username]);
