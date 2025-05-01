@@ -3,7 +3,6 @@ import styles from "./Repositorios.module.css";
 import { useParams } from "react-router";
 import BackBtn from "../../Components/BackBtn/BackBtn";
 import { RepositorioProps } from "../../Types/Repositorios";
-import Error from "../../Components/Error/Error";
 import Loader from "../../Components/Loader/Loader";
 import Repositorio from "../../Components/Repositorio/Repositorio";
 
@@ -28,12 +27,12 @@ const Repositorios = () => {
 
   if (!repositorios && loading) return <Loader />;
   return (
-    <div>
+    <div className={styles.repositorios}>
       <BackBtn />
       <h2>Explore os repositorios do usuario: {username}</h2>
       {repositorios && repositorios.length === 0 && <p>Não há repositorios</p>}
 
-      <div>
+      <div className={styles.respositorios_container}>
         {repositorios?.map((repositorio) => (
           <Repositorio key={repositorio.name} {...repositorio} />
         ))}

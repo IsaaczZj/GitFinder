@@ -12,13 +12,13 @@ const Repositorio = ({
   forks_count,
 }: RepositorioProps) => {
   return (
-    <div>
+    <div className={styles.repositorio}>
       <h2>{name}</h2>
       <p>
         <BsCodeSlash />
         {language}
       </p>
-      <div>
+      <div className={styles.stats}>
         <div>
           <AiOutlineStar />
           <span>{stargazers_count}</span>
@@ -28,8 +28,11 @@ const Repositorio = ({
           {forks_count}
         </div>
       </div>
-      <a href={html_url} target="_blank">
-        <span>Ver código <RiGitRepositoryLine/></span>
+      <a href={html_url} target="_blank" className={styles.repositorio_btn}>
+        <span>Ver código</span>
+        <span >
+          <RiGitRepositoryLine />
+        </span>
       </a>
     </div>
   );
