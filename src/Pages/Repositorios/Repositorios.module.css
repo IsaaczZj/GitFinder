@@ -14,3 +14,11 @@
     gap: 1.2rem;
   }
 }
+
+@media (max-width: 50rem) {
+  .repositorios{
+    & > h2{
+      font-size: 0.8rem;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-.repositorio{
+.repositorio {
   background-color: #0e1129;
   padding: 2rem;
   border-radius: 0.8rem;
@@ -7,13 +7,19 @@
   flex-direction: column;
   gap: 1rem;
   flex: 1 0 100%;
-  align-items: start;
+  align-items: center;
 
-  & .stats{
+  & p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  & .stats {
     display: flex;
     gap: 1rem;
-    
-    & div{
+
+    & div {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -23,13 +29,13 @@
       padding-right: 0.3rem;
     }
 
-    & svg{
+    & svg {
       background-color: #4ed8c7;
       font-size: 1.5rem;
     }
   }
 
-  & .repositorio_btn{
+  & .repositorio_btn {
     line-height: 0;
     display: flex;
     align-items: center;
@@ -41,8 +47,26 @@
     border-radius: 0.5rem;
     opacity: 0.8;
 
-    &:hover{
+    &:hover {
       opacity: 1;
     }
+  }
+}
+
+@media (max-width: 50rem) {
+  .repositorio{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    & > h2{
+      word-break: break-word;
+    }
+    & .repositorio_btn{
+      line-height: 1.2;
+    }
+    
   }
 }
