@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 import Home from "./Pages/Home.tsx";
+import Repositorios from "./Pages/Repositorios/Repositorios.tsx";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/repositorios/:username",
+        element: <Repositorios />,
       },
     ],
   },
