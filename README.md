@@ -1,54 +1,67 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![image](https://github.com/user-attachments/assets/793c8cdc-0712-48e2-acf9-7943c3b198c3)
 
-Currently, two official plugins are available:
+# GitFinder
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este é um projeto que permite buscar por usuários do GitHub e visualizar seus perfis e os 10 repositórios públicos mais recentes, consumindo a API oficial do GitHub.
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+*   Busca de usuários do GitHub pelo nome de usuário.
+*   Exibição do perfil do usuário (avatar, nome, localização, número de seguidores e seguindo).
+*   Link para visualizar os repositórios do usuário.
+*   **Listagem dos 10 repositórios públicos mais recentes do usuário.**
+*   Exibição de detalhes dos repositórios (nome, linguagem principal, estrelas, forks).
+*   Link direto para cada repositório no GitHub.
+*   Tratamento de erro para usuários não encontrados.
+*   Design responsivo.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Tecnologias Utilizadas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+*   **React:** Biblioteca principal para construção da interface.
+*   **TypeScript:** Superset do JavaScript para tipagem estática.
+*   **Vite:** Ferramenta de build rápida.
+*   **React Router:** Para gerenciamento de rotas (navegação entre a página inicial e a de repositórios).
+*   **React Icons:** Biblioteca para inclusão de ícones.
+*   **CSS Modules:** Para estilização escopada por componente.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## API Utilizada
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Este projeto consome a **API pública do GitHub**:
+
+*   **Busca de Usuário:** `https://api.github.com/users/{username}`
+*   **Listagem de Repositórios do Usuário (ordenados por criação, mais recentes primeiro):** `https://api.github.com/users/{username}/repos?sort=created&direction=desc` (O código pega apenas os 10 primeiros resultados desta chamada).
+
+## Como Executar o Projeto
+
+1.  **Clone o repositório:**
+    ```bash
+    # Se ainda não estiver no diretório
+    cd GitFinder
+    ```
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+3.  **Execute o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
+4.  Abra o navegador no endereço fornecido (geralmente `http://localhost:5173`).
+
+## Estrutura do Projeto
+
+*   `src/`: Contém todo o código fonte da aplicação.
+    *   `Components/`: Componentes reutilizáveis da interface
+    *   `Pages/`: Componentes que representam as páginas da aplicação (`Home`, `Repositorios`).
+    *   `Types/`: Definições de tipos TypeScript (`Repositorios.ts`, `user.ts`).
+    *   `App.tsx`: Componente principal que configura as rotas e o layout base.
+    *   `main.tsx`: Ponto de entrada da aplicação React.
+    *   `index.css`: Estilos CSS globais.
+    *   `App.module.css`: Estilos específicos do componente App.
+*   `public/`: Arquivos públicos (como o favicon).
+*   `index.html`: Arquivo HTML principal.
+*   `vite.config.ts`: Configuração do Vite.
+*   `tsconfig.json` / `tsconfig.app.json` / `tsconfig.node.json`: Configurações do TypeScript.
+*   `package.json`: Definições do projeto e dependências.
+*   `eslint.config.js`: Configuração do ESLint.
