@@ -1,8 +1,8 @@
 import React from "react";
 import { UserProps } from "../../Types/user";
 import { MdLocationPin } from "react-icons/md";
-import { Link } from "react-router";
-import styles from "./User.module.css"
+import { Link, useNavigate } from "react-router";
+import styles from "./User.module.css";
 
 const User = ({
   avatar_url,
@@ -11,6 +11,11 @@ const User = ({
   location,
   following,
 }: UserProps) => {
+  const navigate = useNavigate();
+
+  function handleNavigate() {
+    navigate(`/repositorios/${login}`, { state: { avatar_url } });
+  }
   return (
     <div className={styles.user}>
       <img src={avatar_url} alt="imagem do usuario" />
@@ -31,7 +36,9 @@ const User = ({
           <p className={styles.number}>{following}</p>
         </div>
       </div>
-      <Link to={`/repositorios/${login}`}>Ver melhores projetos</Link>
+      <button className={styles.buttom} onClick={handleNavigate}>
+        Ver melhores projetos
+      </button>
     </div>
   );
 };

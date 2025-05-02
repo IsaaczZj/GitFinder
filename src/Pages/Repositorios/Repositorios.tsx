@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Repositorios.module.css";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import BackBtn from "../../Components/BackBtn/BackBtn";
 import { RepositorioProps } from "../../Types/Repositorios";
 import Loader from "../../Components/Loader/Loader";
@@ -12,6 +12,9 @@ const Repositorios = () => {
   const [repositorios, setRepositorios] = useState<
     RepositorioProps[] | [] | null
   >(null);
+  const location = useLocation();
+  const avatarState = location.state?.avatar_url;
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(avatarState || null);
 
   useEffect(() => {
     async function loadRepos(userName: string) {
@@ -20,10 +23,10 @@ const Repositorios = () => {
         `https://api.github.com/users/${userName}/repos?sort=created&direction=desc`
       );
       const data = await response.json();
-      const lastFiveRepos = data.slice(0,10)
+      const lastFiveRepos = data.slice(0, 10);
 
       setRepositorios(lastFiveRepos);
-      setLoading(false)
+      setLoading(false);
     }
     if (username) loadRepos(username);
   }, [username]);
@@ -32,7 +35,10 @@ const Repositorios = () => {
   return (
     <div className={styles.repositorios}>
       <BackBtn />
-      <h2>Explore os repositorios do usuario: {username}</h2>
+      <div>
+        <h2>Explore os repositorios do usuario: {username}</h2>
+        {avatarUrl && <img className={styles.avatar} src={avatarUrl}/>}
+      </div>
       {repositorios && repositorios.length === 0 && <p>Não há repositorios</p>}
 
       <div className={styles.respositorios_container}>
