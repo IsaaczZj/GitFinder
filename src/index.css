@@ -20,3 +20,16 @@ p{
 a{
   text-decoration: none;
 }
+
+::-webkit-scrollbar{
+  width: 0.9rem;
+}
+::-webkit-scrollbar-track {
+  background: #2b3566; 
+  border-radius: 0.4rem; 
+}
+::-webkit-scrollbar-thumb {
+  background-color: #9da5d1;
+  border-radius: 10px;
+  border: 2px solid #1f2937;
+}
